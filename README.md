@@ -22,4 +22,3 @@ Execução Principal: Chama a função processar_arquivo_csv para iniciar o proc
 - **Importação de Módulos Python**:
   - `csv`
   - `pymysql`
-

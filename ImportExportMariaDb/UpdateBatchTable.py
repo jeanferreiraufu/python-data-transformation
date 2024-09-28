@@ -52,6 +52,3 @@ parcelas = 10
 lote = "PARCELAS-" + str(parcelas) + "-LOTE"
 
 atualizar_arquivo_por_registro(lote)
-
-
-
