@@ -364,3 +364,116 @@ A conversão de HSV para RGB é um pouco mais complexa e envolve as seguintes et
 ### Conclusões
 
 A escolha entre RGB e HSV depende da aplicação específica. O RGB é mais adequado para dispositivos eletrônicos e aplicações que exigem simplicidade e eficiência. O HSV é mais útil para tarefas que envolvem a manipulação intuitiva de cores, como edição de imagens e segmentação.
+
+
+## Cálculo da Entropia de Primeira Ordem para Strings
+
+O pseudocódigo a seguir descreve o processo de cálculo da entropia de primeira ordem para tratar strings, baseado no conceito de entropia apresentado nas fontes:
+
+```Pseudo
+INICIALIZAÇÃO:
+  frequencias <- dicionário vazio
+
+PROCESSAMENTO DA STRING:
+  PARA cada caractere c na string de entrada:
+    SE c está em frequencias:
+      frequencias[c] <- frequencias[c] + 1
+    SENÃO:
+      frequencias[c] <- 1
+
+CÁLCULO DA ENTROPIA:
+  H <- 0
+  tamanho_da_string <- comprimento da string de entrada
+
+  PARA cada caractere c em frequencias:
+    p <- frequencias[c] / tamanho_da_string
+    H <- H - p * log2(p)
+
+RESULTADO:
+  Retornar H
+```
+
+**Inicialização:**
+
+1. **Criar um dicionário vazio**, `frequencias`, para armazenar a frequência de cada caractere na string.
+
+**Processamento da String:**
+
+2. **Para cada caractere `c` na string de entrada:**
+   * **Se `c` já está no dicionário `frequencias`:**
+      * Incrementar a contagem de `c` no dicionário: `frequencias[c] = frequencias[c] + 1`.
+   * **Senão:**
+      * Adicionar `c` ao dicionário com contagem 1: `frequencias[c] = 1`.
+
+**Cálculo da Entropia:**
+
+3. **Inicializar a entropia `H` como 0.**
+
+4. **Para cada caractere `c` no dicionário `frequencias`:**
+   * **Calcular a probabilidade `p` de `c`:** `p = frequencias[c] / tamanho_da_string`.
+   * **Atualizar a entropia `H`:** `H = H - p * log2(p)`.
+
+**Resultado:**
+
+5. O valor de `H` representa a entropia de primeira ordem da string de entrada.
+
+### Avaliação da String "O dia está chuvoso"
+
+Aplicando o pseudocódigo à string "o dia esta chuvoso", obtemos:
+
+1. **Frequências dos caracteres:**
+
+   ```
+    {
+      'o': 3,
+      ' ': 3,
+      'd': 1,
+      'i': 1,
+      'a': 2,
+      'e': 1,
+      's': 2,
+      't': 1,
+      'c': 1,
+      'h': 1,
+      'u': 1,
+      'v': 1
+    }
+   ```
+
+2. **Cálculo da Entropia:**
+   ```
+    H = 0
+    tamanho_da_string = 18
+
+    Para cada caractere c no dicionário frequencias:
+      p = frequencias[c] / tamanho_da_string
+      H = H - p * log2(p)
+
+    # Cálculos detalhados:
+    p('o') = 3 / 18 ≈ 0.1667
+    p(' ') = 3 / 18 ≈ 0.1667
+    p('d') = 1 / 18 ≈ 0.0556
+    p('i') = 1 / 18 ≈ 0.0556
+    p('a') = 2 / 18 ≈ 0.1111
+    p('e') = 1 / 18 ≈ 0.0556
+    p('s') = 2 / 18 ≈ 0.1111
+    p('t') = 1 / 18 ≈ 0.0556
+    p('c') = 1 / 18 ≈ 0.0556
+    p('h') = 1 / 18 ≈ 0.0556
+    p('u') = 1 / 18 ≈ 0.0556
+    p('v') = 1 / 18 ≈ 0.0556
+
+    H = - (0.1667 * log2(0.1667) + 0.1667 * log2(0.1667) + 0.0556 * log2(0.0556) * 10 + 0.1111 * log2(0.1111) * 2)
+      ≈ - (0.1667 * -2.5849 + 0.1667 * -2.5849 + 0.0556 * -4.1699 * 10 + 0.1111 * -3.1699 * 2)
+      ≈ 0.4310 + 0.4310 + 0.2318 * 10 + 0.3522 * 2
+      ≈ 0.4310 + 0.43
+   ```
+
+Portanto, a entropia de primeira ordem da string "o dia esta chuvoso" é aproximadamente **3.8844**.
+
+**Observações:**
+
+* As fontes fornecem informações sobre o cálculo da entropia para imagens, mas não especificamente para strings. Este pseudocódigo foi adaptado com base no conceito geral de entropia e pode precisar de verificação independente.
+* A entropia de primeira ordem considera apenas a frequência individual de cada caractere, ignorando as relações entre caracteres adjacentes. 
+
+**Fontes:**
