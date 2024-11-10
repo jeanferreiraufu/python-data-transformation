@@ -477,3 +477,83 @@ Portanto, a entropia de primeira ordem da string "o dia esta chuvoso" é aproxim
 * A entropia de primeira ordem considera apenas a frequência individual de cada caractere, ignorando as relações entre caracteres adjacentes. 
 
 **Fontes:**
+
+
+## Compreendendo a Árvore de Huffman
+
+A árvore de Huffman é uma estrutura de dados fundamental para o algoritmo de **codificação de Huffman**, um método de compressão de dados sem perdas que atribui códigos de tamanho variável a diferentes símbolos, explorando a frequência com que eles aparecem.
+
+**Construindo a Árvore**
+
+A construção da árvore de Huffman se baseia na frequência dos símbolos que compõem os dados a serem comprimidos:
+
+1. **Frequências:** Primeiramente, as frequências de cada símbolo nos dados são contabilizadas.
+2. **Nós:** Cada símbolo e sua frequência são representados por um nó.
+3. **Ordenação:** Os nós são ordenados em ordem crescente de frequência.
+4. **Combinação:** Os dois nós com as menores frequências são combinados em um novo nó pai, cuja frequência é a soma das frequências dos filhos. 
+5. **Repetição:** Os passos 3 e 4 são repetidos até que reste apenas um nó, que se torna a raiz da árvore.
+
+**Exemplo de Construção:**
+
+Considere a string "BANANA". A frequência de cada caractere é:
+
+* B: 1
+* A: 3
+* N: 2
+
+A árvore de Huffman é construída da seguinte forma:
+
+1. Os nós B (1), N (2) e A (3) são criados.
+2. B (1) e N (2) são combinados em um nó BN (3).
+3. BN (3) e A (3) são combinados em um nó raiz BANANA (6).
+
+**Codificação**
+
+A árvore de Huffman permite a codificação dos símbolos com base em sua posição na árvore:
+
+* Cada ramo à esquerda é representado por '0'.
+* Cada ramo à direita é representado por '1'.
+
+Percorrendo a árvore da raiz até o nó do símbolo, o código é construído pela concatenação dos '0's e '1's encontrados no caminho.
+
+No exemplo da string "BANANA":
+
+* B: 10
+* A: 1
+* N: 0
+
+**Exercício**
+
+Construa a árvore de Huffman e determine os códigos para os caracteres da string "ARARA".
+
+**Resposta:**
+
+Frequências:
+
+* A: 3
+* R: 2
+
+Construção da árvore:
+
+1. Nós A (3) e R (2) são criados.
+2. A (3) e R (2) são combinados em um nó raiz ARARA (5).
+
+Códigos:
+
+* A: 0
+* R: 1
+
+**Vantagens da Codificação de Huffman:**
+
+* **Compressão eficiente:** Símbolos mais frequentes recebem códigos mais curtos, resultando em compressão eficiente, especialmente para dados com alta redundância.
+* **Compressão sem perdas:** A decodificação usando a árvore de Huffman recupera os dados originais sem perdas.
+
+**Limitações da Codificação de Huffman:**
+
+* **Ineficiente para entropia baixa:** Se a entropia dos dados for menor que 1 bit/símbolo, o código de Huffman não é eficiente.
+* **Adaptação a estatísticas variáveis:** Não se adapta eficientemente a dados com estatísticas variáveis ao longo do tempo, embora existam soluções com códigos de Huffman dinâmicos.
+
+**Observações:**
+
+* A codificação de Huffman é amplamente utilizada em diversos formatos de compressão, incluindo JPEG e MP3. 
+* As fontes fornecem informações detalhadas sobre a codificação de Huffman, incluindo o processo de construção da árvore, exemplos de codificação e decodificação, e suas vantagens e limitações.
